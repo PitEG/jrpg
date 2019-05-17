@@ -1,8 +1,13 @@
 ﻿using System;
 
 namespace jrpg {
-	interface Character {
-		string name;
+	abstract class Character {
+		private string name;
+		private Inventory inv;
+		
 
+		public string GetName() {
+			return name;
+		}
 	}
 }
