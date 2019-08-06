@@ -10,7 +10,7 @@ namespace JRPG {
 
 		//The stat values must be ordered in the array as it is ordered
 		//in the enumeration above.
-		StatValues[] statValues;
+		private	StatValues[] statValues;
 
 		internal StatValues Health {
 			 get { return statValues[(int)StatNames.Health]; }
