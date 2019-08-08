@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace JRPG {
-	internal class Inventory {
+	public class Inventory {
 
 		internal Inventory() {
 

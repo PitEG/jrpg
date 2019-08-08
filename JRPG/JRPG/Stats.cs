@@ -1,6 +1,6 @@
 ﻿using System;
 namespace JRPG {
-	internal class Stats {
+	public class Stats {
 
 		private static int NumberOfStats = 3;
 		enum StatNames {
@@ -12,19 +12,19 @@ namespace JRPG {
 		//in the enumeration above.
 		private	StatValues[] statValues;
 
-		internal StatValues Health {
+		public StatValues Health {
 			 get { return statValues[(int)StatNames.Health]; }
 		}
 
-		internal StatValues Mana {
+		public StatValues Mana {
 			get { return statValues[(int)StatNames.Mana]; }
 		}
 
-		internal StatValues Attack {
+		public StatValues Attack {
 			get { return statValues[(int)StatNames.Mana]; }
 		}
 
-		internal Stats() {
+		public Stats() {
 			statValues = new StatValues[NumberOfStats];
 		}
 
