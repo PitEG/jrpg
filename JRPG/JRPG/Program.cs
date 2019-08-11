@@ -14,7 +14,7 @@ namespace JRPG {
 		static Inventory inv = new Inventory(4);
 
 		public static void TestMove() {
-			Move move = new ExampleMove("example move");
+			Ability move = new ExampleMove("example move");
 			Console.WriteLine(move);
 			move.Use(character, character);
 			move.Use();

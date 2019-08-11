@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace JRPG {
-	public abstract class Move {
+	public abstract class Ability {
 
 		private string name = "";
 		
@@ -10,10 +10,10 @@ namespace JRPG {
 			get { return this.name; }
 		}
 
-		protected Move() : this(""){
+		protected Ability() : this(""){
 		}
 
-		protected Move(string name) {
+		protected Ability(string name) {
 			this.name = name;
 		}
 
@@ -26,7 +26,7 @@ namespace JRPG {
 	}
 
 	//example move
-	public class ExampleMove : Move {
+	public class ExampleMove : Ability {
 
 		public ExampleMove(string name) : base(name) {
 		}
