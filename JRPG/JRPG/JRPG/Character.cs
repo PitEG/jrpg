@@ -3,9 +3,9 @@
 namespace JRPG {
 	public class Character {
 
-		private Stats stats;
-		private Inventory inventory;
-		private string name;
+		protected Stats stats;
+		protected Inventory inventory;
+		protected string name;
 
 		public Stats Stats{
 			get { return this.stats; }

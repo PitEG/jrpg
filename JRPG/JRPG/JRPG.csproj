@@ -43,15 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Move.cs" />
+    <Compile Include="JRPG\Battle.cs" />
+    <Compile Include="JRPG\Character.cs" />
+    <Compile Include="JRPG\Inventory.cs" />
+    <Compile Include="JRPG\Item.cs" />
+    <Compile Include="JRPG\Ability.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stats.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="JRPG\Stats.cs" />
+    <Compile Include="JRPG\Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

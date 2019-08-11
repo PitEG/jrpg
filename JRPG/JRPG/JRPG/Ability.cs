@@ -4,17 +4,26 @@ using System.Collections.Generic;
 namespace JRPG {
 	public abstract class Ability {
 
-		private string name = "";
+		protected string name = "";
+		protected Element element;
+		protected int power; 
 		
-		string Name {
+		public string Name {
 			get { return this.name; }
 		}
 
-		protected Ability() : this(""){
+		public Element Element {
+			get { return this.element; }
+			set { this.element = value; }
 		}
 
-		protected Ability(string name) {
+		protected Ability() : this("", 0, 0){
+		}
+
+		protected Ability(string name, int power, Element element) {
 			this.name = name;
+			this.power = power;
+			this.element = element;
 		}
 
 		public abstract void Use(params Character[] target);
@@ -25,10 +34,15 @@ namespace JRPG {
 
 	}
 
+	//example elements
+	public enum Element {
+		None, Physical, Fire, Water, Earth, Air 
+	}
+
 	//example move
 	public class ExampleMove : Ability {
 
-		public ExampleMove(string name) : base(name) {
+		public ExampleMove(string name) : base(name, 0, Element.None) {
 		}
 
 		public override void Use(params Character[] target) {
