@@ -2,7 +2,7 @@
 namespace JRPG {
 	public class Stats {
 
-		private static int NumberOfStats = 3;
+		private static readonly int NumberOfStats = 3;
 		enum StatNames {
 			//example stats			
 			Health, Mana, Attack

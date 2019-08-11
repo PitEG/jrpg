@@ -3,59 +3,39 @@
 namespace JRPG {
 	class Program {
 		static void Main(string[] args) {
-			//testStats();
-			//testCharacterAndTeams();
-			testBattle();
+			Tester.TestInventory();
 		}
+	}
 
-		static void testStats() {
-			Stats stats = new Stats();
-			StatValues health = stats.Health;
-			health.current = 10;
-			health.baseValue = 20;
-			Console.WriteLine("{0} {1}", health.current, health.baseValue);
-		}
+	//Testing Purposes only
+	public static class Tester {
 
-		static void testCharacterAndTeams() {
-			Character character1 = new CharacterExample("Jerma1", new Stats(), new Inventory());
-			Character character2 = new CharacterExample("Jerma2", new Stats(), new Inventory());
-			Character character3 = new CharacterExample("Jerma3", new Stats(), new Inventory());
-			Character character4 = new CharacterExample("Jerma4", new Stats(), new Inventory());
-			Character character5 = new CharacterExample("Jerma5", new Stats(), new Inventory());
+		static Character character = new Character("Jerma");
+		static Inventory inv = new Inventory(4);
 
-			Character[] characterArray1 = { character1, character2 };
-			Team team1 = new Team(characterArray1);
-			Team team2 = new Team();
-			team2.AddMember(character3);
-			Character[] characterArray2 = { character4, character5 };
-			team2.AddMembers(characterArray2);
-			Console.WriteLine(team1);
-			Console.WriteLine(team2);
-			team2.RemoveMember(character4);
-			Console.WriteLine(team2);
+		public static void TestMove() {
+			Move move = new ExampleMove("example move");
+			Console.WriteLine(move);
+			move.Use(character, character);
+			move.Use();
 
 		}
 
-		static void testBattle() {
-			Character character1 = new CharacterExample("Jerma1", new Stats(), new Inventory());
-			Character character2 = new CharacterExample("Jerma2", new Stats(), new Inventory());
-			Character character3 = new CharacterExample("Jerma3", new Stats(), new Inventory());
-			Character character4 = new CharacterExample("Jerma4", new Stats(), new Inventory());
-			Character character5 = new CharacterExample("Jerma5", new Stats(), new Inventory());
+		public static void TestInventory() {
+			inv.AddItem(new ItemExample("item 1"));
+			inv.AddItem(new ItemExample("item 2"));
+			inv.AddItem(new ItemExample("item 3"));
+			inv.AddItem(new ItemExample("item 4"));
 
-			Character[] characterArray1 = { character1, character2 };
-			Character[] characterArray2 = { character3, character4, character5 };
+			Console.WriteLine(inv);
 
-			Team team1 = new Team(characterArray1);
-			Team team2 = new Team(characterArray2);
+			Item[] spillOver = inv.ChangeSize(2);
 
-			Battle battle = new Battle();
-			battle.AddTeam(team1);
-			battle.AddTeam(team2);
-			battle.SortTurnsRandomly();
-
-			Console.WriteLine("{0}\n{1}", team1, team2);
-			Console.WriteLine("{0}\n", battle);
+			Console.WriteLine(inv.Size);
+			Console.WriteLine(inv);
+			for (int i = 0; i < spillOver.Length; i++)
+				Console.WriteLine("excess " + spillOver[0]);
 		}
+
 	}
 }

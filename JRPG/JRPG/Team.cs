@@ -38,10 +38,13 @@ namespace JRPG {
 				}
 			}
 		}
-
-		//This method removes the character given that both the passed object
-		//and the object you wish to remove are the same object referenced in 
-		//the heap
+		
+		/// <summary>
+		///This method removes the character given that both the passed object
+		///and the object you wish to remove are the same object referenced in 
+		///the heap
+		/// </summary>
+		/// <param name="character"></param>
 		public void RemoveMember(Character character) {
 			members.Remove(character);
 		}

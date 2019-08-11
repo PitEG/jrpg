@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="Battle.cs" />
     <Compile Include="Character.cs" />
-    <Compile Include="CharacterExample.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stats.cs" />

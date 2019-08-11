@@ -1,34 +1,31 @@
 ﻿using System;
 
 namespace JRPG {
-	public abstract class Character {
+	public class Character {
 
 		private Stats stats;
 		private Inventory inventory;
 		private string name;
 
-		public virtual Stats Stats{
+		public Stats Stats{
 			get { return this.stats; }
 		}
 
-		public virtual Inventory Inventory {
+		public Inventory Inventory {
 			get { return this.inventory; }
 		}
 
-		public virtual string Name {
+		public string Name {
 			get { return this.name; }
 		}
 
-		internal Character() : this("") {
+		public Character() : this("") {
 		}
 
-		internal Character(string name) : this (name, new Stats()){
+		public Character(string name) : this (name, new Stats(), new Inventory()){
 		}
 
-		internal Character(string name, Stats stats) : this(name, stats, new Inventory()) {
-		}
-
-		internal Character(string name, Stats stats, Inventory inventory) {
+		public Character(string name, Stats stats, Inventory inventory) {
 			this.inventory = inventory;
 			this.name = name;
 			this.stats = stats;
