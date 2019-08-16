@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace JRPG {
 	public class Inventory {
 
-		private Item[] itemArray;
+		protected Item[] itemArray;
 
 		public Item[] Items {
 			get { return this.itemArray; }
@@ -55,6 +55,13 @@ namespace JRPG {
 			return excessItemArray;
 		}
 
+		/// <summary>
+		/// Will place the item in the array at the lowest possible
+		/// index. If the inventory is full, it will return false and
+		/// not place the item
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public bool AddItem(Item item) {
 			for (int i = 0; i < itemArray.Length; i++) {
 				if (itemArray[i] == null) {

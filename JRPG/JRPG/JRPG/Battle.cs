@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace JRPG {
 	public class Battle {
 
-		private List<Team> teams;
-		private Character currentCharacter;
-		private List<Character> turnOrder;
+		protected List<Team> teams;
+		protected Character currentCharacter;
+		protected List<Character> turnOrder;
 
 		public List<Team> Teams {
 			get { return teams; }
@@ -23,20 +23,21 @@ namespace JRPG {
 		public Battle() {
 			this.teams = new List<Team>();
 			turnOrder = new List<Character>();
-			//temporary
-			SortTurnsRandomly();
-			ResetTurns();
+			SortTurnsRandomly(); //placeholder sorting method
+			ResetToFirstCharacter();
 		}
 
 		public void AddTeam(Team team) {
 			this.teams.Add(team);
 		}
 
-		public void ResetTurns() {
+		public void ResetToFirstCharacter() {
 			if (turnOrder.Count > 0) {
 				currentCharacter = turnOrder[0];
 			}
 		}
+
+		#region Sorting
 
 		//sorting methods
 		public void SortTurnsRandomly() {
@@ -61,6 +62,8 @@ namespace JRPG {
 				charactersUnordered.RemoveAt(indexToRemoveAt);
 			}
 		}
+
+		#endregion
 
 		public override string ToString() {
 			string orderOfCharacters = "";

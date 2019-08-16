@@ -5,14 +5,9 @@ namespace JRPG {
 	public class Team {
 
 		private List<Character> members;
-		private bool allMembersAlive = true;
 
 		public List<Character> Members {
 			get { return members; }
-		}
-
-		public bool AllMembersAlive {
-			get { return allMembersAlive; }
 		}
 
 		public Team() {

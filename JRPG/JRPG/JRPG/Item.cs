@@ -12,6 +12,8 @@ namespace JRPG {
 			this.name = name;
 		}
 
+		public abstract void Use();
+
 		public override string ToString() {
 			return this.name;
 		}
@@ -22,6 +24,10 @@ namespace JRPG {
 
 		public ItemExample(string name) {
 			this.name = name;
+		}
+
+		public override void Use() {
+			Console.WriteLine("Used ItemExample");
 		}
 	}
 }
