@@ -31,6 +31,12 @@ namespace JRPG {
 			this.teams.Add(team);
 		}
 
+		private void RemoveAll() {
+			teams.Clear();
+			turnOrder.Clear();
+			currentCharacter = null;
+		}
+
 		public void ResetToFirstCharacter() {
 			if (turnOrder.Count > 0) {
 				currentCharacter = turnOrder[0];
