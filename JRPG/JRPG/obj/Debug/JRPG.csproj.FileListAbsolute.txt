@@ -1,7 +1,0 @@
-D:\GitHub\jrpg\JRPG\JRPG\bin\Debug\JRPG.exe.config
-D:\GitHub\jrpg\JRPG\JRPG\bin\Debug\JRPG.exe
-D:\GitHub\jrpg\JRPG\JRPG\bin\Debug\JRPG.pdb
-D:\GitHub\jrpg\JRPG\JRPG\obj\Debug\JRPG.csprojAssemblyReference.cache
-D:\GitHub\jrpg\JRPG\JRPG\obj\Debug\JRPG.csproj.CoreCompileInputs.cache
-D:\GitHub\jrpg\JRPG\JRPG\obj\Debug\JRPG.exe
-D:\GitHub\jrpg\JRPG\JRPG\obj\Debug\JRPG.pdb
