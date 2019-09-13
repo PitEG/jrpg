@@ -6,6 +6,11 @@ namespace JRPG {
 		public int baseValue;
 	}
 
+	public struct Debuf {
+		public bool enabled;
+		public int duration; 
+	}
+
 	public class Stats {
 
 		//this number MUST match the number of enumerator values
@@ -17,13 +22,19 @@ namespace JRPG {
 			Health, Mana, Attack
 		}
 
+		private static readonly int NumberOfDebufs = 3;
+		public enum DebufName {
+			Poisoned, Weakened, Strengthened
+		}
+
 		//The stat values must be ordered in the array as it is ordered
 		//in the enumeration above.
-		private	StatValues[] statValues;
+		private StatValues[] statValues;
+		private Debuf[] debufs;
 
 		#region Properties
 		public StatValues Health {
-			 get { return statValues[(int)StatName.Health]; }
+			get { return statValues[(int)StatName.Health]; }
 		}
 
 		public StatValues Mana {
@@ -33,10 +44,12 @@ namespace JRPG {
 		public StatValues Attack {
 			get { return statValues[(int)StatName.Mana]; }
 		}
+
 		#endregion
 
 		public Stats() {
 			statValues = new StatValues[NumberOfStats];
+			debufs = new Debuf[NumberOfDebufs];
 		}
 
 		public void SetStatCurrent(StatName stat, int n) {
@@ -45,6 +58,22 @@ namespace JRPG {
 
 		public void SetStatBaseValue(StatName stat, int n) {
 			this.statValues[(int)stat].baseValue = n;
+		}
+
+		public void SetDebuf(DebufName debuf, bool enabled) {
+			this.debufs[(int)debuf].enabled = enabled;
+		}
+
+		public Debuf GetDebuf(DebufName debuf) {
+			return this.debufs[(int)debuf];	
+		}
+
+		public bool GetDebufBool(DebufName debuf) {
+			return this.debufs[(int)debuf].enabled;	
+		}
+
+		public int GetDebufDuration(DebufName debuf) {
+			return this.debufs[(int)debuf].duration;	
 		}
 
 	}
