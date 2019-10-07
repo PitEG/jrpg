@@ -6,12 +6,20 @@ namespace JRPG {
 		public int baseValue;
 	}
 
-	public struct Debuf {
+	public struct StatusEffect {
 		public bool enabled;
 		public int duration; 
 	}
 
 	public class Stats {
+
+		private StatValues health;
+		private StatValues mana;
+		private StatValues attack;
+		
+		private StatusEffect poisoned;
+		private StatusEffect weakened;
+		private StatusEffect strengthened;
 
 		//this number MUST match the number of enumerator values
 		//must represent the number of stats in the statValue 
@@ -23,57 +31,35 @@ namespace JRPG {
 		}
 
 		private static readonly int NumberOfDebufs = 3;
-		public enum DebufName {
+		public enum StatusEffectName {
 			Poisoned, Weakened, Strengthened
 		}
 
-		//The stat values must be ordered in the array as it is ordered
-		//in the enumeration above.
-		private StatValues[] statValues;
-		private Debuf[] debufs;
-
 		#region Properties
 		public StatValues Health {
-			get { return statValues[(int)StatName.Health]; }
+			get { return health; }
 		}
 
 		public StatValues Mana {
-			get { return statValues[(int)StatName.Mana]; }
+			get { return health; }
 		}
 
 		public StatValues Attack {
-			get { return statValues[(int)StatName.Mana]; }
+			get { return attack; }
 		}
 
 		#endregion
 
 		public Stats() {
-			statValues = new StatValues[NumberOfStats];
-			debufs = new Debuf[NumberOfDebufs];
-		}
+			//stats
+			health = new StatValues();
+			mana = new StatValues();
+			attack = new StatValues();
 
-		public void SetStatCurrent(StatName stat, int n) {
-			this.statValues[(int)stat].current = n;
-		}
-
-		public void SetStatBaseValue(StatName stat, int n) {
-			this.statValues[(int)stat].baseValue = n;
-		}
-
-		public void SetDebuf(DebufName debuf, bool enabled) {
-			this.debufs[(int)debuf].enabled = enabled;
-		}
-
-		public Debuf GetDebuf(DebufName debuf) {
-			return this.debufs[(int)debuf];	
-		}
-
-		public bool GetDebufBool(DebufName debuf) {
-			return this.debufs[(int)debuf].enabled;	
-		}
-
-		public int GetDebufDuration(DebufName debuf) {
-			return this.debufs[(int)debuf].duration;	
+			//status effects
+			poisoned = new StatusEffect();
+			weakened = new StatusEffect();
+			strengthened = new StatusEffect();
 		}
 
 	}
