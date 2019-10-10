@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JRPG\AbilityList.cs" />
     <Compile Include="JRPG\Battle.cs" />
     <Compile Include="JRPG\Character.cs" />
     <Compile Include="JRPG\Inventory.cs" />
