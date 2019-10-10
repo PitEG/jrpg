@@ -21,9 +21,6 @@ namespace JRPG {
 		private StatusEffect weakened;
 		private StatusEffect strengthened;
 
-		//this number MUST match the number of enumerator values
-		//must represent the number of stats in the statValue 
-		//instance variable
 		private static readonly int NumberOfStats = 3;
 		public enum StatName {
 			//example stats			

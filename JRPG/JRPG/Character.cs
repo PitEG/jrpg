@@ -5,6 +5,7 @@ namespace JRPG {
 
 		protected Stats stats;
 		protected Inventory inventory;
+		protected AbilityList abilities;
 		protected string name;
 
 		public Stats Stats{

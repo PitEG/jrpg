@@ -13,7 +13,12 @@ namespace JRPG {
 		}
 
 		public Character CurrentCharacter {
-			get { return currentCharacter; }
+			get {
+				if (currentCharacter == null) {
+					throw new Exception("Null Character Reference");
+				}
+				return currentCharacter;
+			}
 		}
 
 		public List<Character> TurnOrder {
