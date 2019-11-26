@@ -59,19 +59,6 @@ namespace JRPG {
 			strengthened = new StatusEffect();
 		}
 
-		public Stats(Stats stats) {
-			CopyStats(stats);
-		}
-
-		private void CopyStats(Stats stats) {
-			this.health = stats.health;
-			this.mana = stats.mana;
-			this.attack = stats.attack;
-			this.poisoned = stats.poisoned;
-			this.weakened = stats.weakened;
-			this.strengthened = stats.strengthened;
-		}
-
 	}
 
 }
