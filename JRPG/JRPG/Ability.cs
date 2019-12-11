@@ -8,10 +8,11 @@ namespace JRPG {
 		protected string name;
 		protected string displayName;
 		protected Element element;
-		protected int power; 
+		protected int power;
 		
 		public string Name {
 			get { return this.name; }
+			set { this.name = value; }
 		}
 
 		public string DisplayName {
@@ -46,7 +47,15 @@ namespace JRPG {
 		}
 
 		public override int GetHashCode() {
-			return name.GetHashCode();
+			return this.name.GetHashCode();
+		}
+
+		public override bool Equals(object obj) {
+			if (((Ability)obj).Name.Equals(this.name)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 	}

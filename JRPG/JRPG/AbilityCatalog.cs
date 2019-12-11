@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace JRPG {
 	[Serializable]
 	public static class AbilityCatalog {
-		private static Dictionary<Ability,Ability> abilities; 
+		private static Dictionary<Ability, Ability> abilities; 
 		
 		public static Dictionary<Ability, Ability> Abilities {
 			get { return abilities; }
@@ -22,7 +22,7 @@ namespace JRPG {
 		/// <param name="ability"></param>
 		/// <returns></returns>
 		public static bool Add(Ability ability) {
-			if (abilities.ContainsKey(ability)) {
+			if (abilities.ContainsKey(ability)){
 				return false;
 			} else {
 				abilities.Add(ability, ability);
@@ -39,7 +39,7 @@ namespace JRPG {
 			if (!abilities.ContainsKey(ability)) {
 				return false;
 			} else {
-				abilities.Add(ability, ability);
+				abilities.Remove(ability);
 				return true;
 			}
 		}

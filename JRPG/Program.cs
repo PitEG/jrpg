@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using JRPG;
+using JRPG.SampleGame;
 
 namespace JRPG.Sample {
 	class Program {
@@ -72,26 +73,16 @@ namespace JRPG.Sample {
 
 		public static void TestAbilityCatalogSave() {
 			Ability a1 = new Ability("1", "one", 1, Element.Air);
-			Ability a2 = new Ability("2", "two", 1, Element.Fire);
-			Ability a3 = new Ability("3", "three", 1, Element.Earth);
-			Ability a4 = new Ability("4", "four", 1, Element.Water);
+			//Ability a2 = new Ability("2", "two", 1, Element.Fire);
+			//Ability a3 = new Ability("3", "three", 1, Element.Earth);
+			//Ability a4 = new Ability("4", "four", 1, Element.Water);
 			AbilityCatalog.Add(a1);
-			AbilityCatalog.Add(a2);
-			AbilityCatalog.Add(a3);
-			AbilityCatalog.Add(a4);
-			JsonSerializerOptions options = new JsonSerializerOptions();
-			options.WriteIndented = true;
+			//AbilityCatalog.Add(a2);
+			//AbilityCatalog.Add(a3);
+			//AbilityCatalog.Add(a4);
 
-			using (Stream stream = File.Create("abilities")) {
-				JsonSerializer.SerializeAsync<Ability>(stream, a1, options);
-				JsonSerializer.SerializeAsync<Ability>(stream, a2, options);
-				JsonSerializer.SerializeAsync<Ability>(stream, a3, options);
-				JsonSerializer.SerializeAsync<Ability>(stream, a4, options);
-			}
-			Console.WriteLine(JsonSerializer.Serialize(a1,options));
-			using (Stream stream = File.Open("abilities", FileMode.Open)) {
-				JsonSerializer.DeserializeAsync<Ability>(stream);
-			}
+			JsonSaver.SaveAbilityCatalog("abilitycatalog");
+			JsonSaver.LoadAbilityCatalog("abilitycatalog");
 		}
 	}
 
