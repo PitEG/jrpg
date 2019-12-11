@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 
 namespace JRPG {
-	public abstract class Ability {
+	[Serializable]
+	public class Ability {
 
 		protected string name;
 		protected string displayName;
@@ -13,22 +14,32 @@ namespace JRPG {
 			get { return this.name; }
 		}
 
+		public string DisplayName {
+			get { return this.displayName; }
+		}
+
 		public Element Element {
 			get { return this.element; }
 			set { this.element = value; }
 		}
 
-		protected Ability() : this(String.Empty, String.Empty, 0, 0){
+		public int Power {
+			get { return this.power; }
 		}
 
-		protected Ability(string name, string displayName, int power, Element element) {
+		public Ability() : this(String.Empty, String.Empty, 0, 0){
+		}
+
+		public Ability(string name, string displayName, int power, Element element) {
 			this.name = name;
 			this.displayName = displayName;
 			this.power = power;
 			this.element = element;
 		}
 
-		public abstract void Use(params Character[] target);
+		public virtual void Use(params Character[] target) {
+			//unemplemented
+		}
 
 		public override string ToString() {
 			return this.name;
@@ -46,6 +57,7 @@ namespace JRPG {
 	}
 
 	//example move
+	[Serializable]
 	public class ExampleMove : Ability {
 
 		public ExampleMove(string name) : base(name, name, 0, Element.None) {

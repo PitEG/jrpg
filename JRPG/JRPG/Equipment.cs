@@ -1,10 +1,31 @@
 ﻿using System;
 
 namespace JRPG {
-	class Equipment {
-		Item helmet;
-		Item shirt;
-		Item pants;
-		Item shoes;
+	[Serializable]
+	public class Equipment {
+		protected Item helmet;
+		protected Item shirt;
+		protected Item pants;
+		protected Item shoes;
+
+		public Item Helmet {
+			get { return this.helmet; }
+		}
+		public Item Shirt {
+			get { return this.Shirt; }
+		}
+		public Item Pants {
+			get { return this.pants; }
+		}
+		public Item Shoes {
+			get { return this.Shoes; }
+		}
+
+		public Equipment(Item helmet, Item shirt, Item pants, Item shoes) {
+			this.helmet = helmet;
+			this.shirt = shirt;
+			this.pants = pants;
+			this.shoes = shoes;
+		}
 	}
 }

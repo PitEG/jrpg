@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
+using JRPG;
 
-namespace JRPG {
+namespace JRPG.Sample {
 	class Program {
 		static void Main(string[] args) {
-			Tester.TestInventory();
+			Tester.TestAbilityCatalogSave();
 		}
 	}
 
-	//Testing Purposes only
+	//Testing Classes 
 	public static class Tester {
 
 		static Character character = new Character("Jerma");
@@ -37,5 +43,61 @@ namespace JRPG {
 				Console.WriteLine("excess " + spillOver[0]);
 		}
 
+		public static void TestSave() {
+			Character character = new Character("simon");
+			BinaryFormatter formatter = new BinaryFormatter();
+			//save
+			using (Stream fs = File.Create("test.char")) {
+				formatter.Serialize(fs, character);
+				Console.WriteLine("save");
+			}
+			Console.WriteLine(character.Name);
+			character = null;
+			//load
+			using (Stream fs = File.Open("test.char", FileMode.Open)) {
+				character = (Character)formatter.Deserialize(fs);
+				Console.WriteLine("load");
+			}
+			Console.WriteLine(character.Name);
+			character.Name = "something new";
+			Console.WriteLine(character.Name);
+			//load
+			using (Stream fs = File.Open("test.char", FileMode.Open)) {
+				character = (Character)formatter.Deserialize(fs);
+				Console.WriteLine("load");
+			}
+			Console.WriteLine(character.Name);
+
+		}
+
+		public static void TestAbilityCatalogSave() {
+			Ability a1 = new Ability("1", "one", 1, Element.Air);
+			Ability a2 = new Ability("2", "two", 1, Element.Fire);
+			Ability a3 = new Ability("3", "three", 1, Element.Earth);
+			Ability a4 = new Ability("4", "four", 1, Element.Water);
+			AbilityCatalog.Add(a1);
+			AbilityCatalog.Add(a2);
+			AbilityCatalog.Add(a3);
+			AbilityCatalog.Add(a4);
+			JsonSerializerOptions options = new JsonSerializerOptions();
+			options.WriteIndented = true;
+
+			using (Stream stream = File.Create("abilities")) {
+				JsonSerializer.SerializeAsync<Ability>(stream, a1, options);
+				JsonSerializer.SerializeAsync<Ability>(stream, a2, options);
+				JsonSerializer.SerializeAsync<Ability>(stream, a3, options);
+				JsonSerializer.SerializeAsync<Ability>(stream, a4, options);
+			}
+			Console.WriteLine(JsonSerializer.Serialize(a1,options));
+			using (Stream stream = File.Open("abilities", FileMode.Open)) {
+				JsonSerializer.DeserializeAsync<Ability>(stream);
+			}
+		}
+	}
+
+	public class Game {
+
+		public Game() {
+		}
 	}
 }

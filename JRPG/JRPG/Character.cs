@@ -1,13 +1,20 @@
 ﻿using System;
 
 namespace JRPG {
+	[Serializable]
 	public class Character {
 
+		protected string name;
 		protected Stats stats;
 		protected Inventory inventory;
 		protected Equipment equipment;
 		protected AbilityList abilities;
-		protected string name;
+
+		//Properties
+		public string Name {
+			get { return this.name; }
+			set { this.name = value; }
+		}
 
 		public Stats Stats{
 			get { return this.stats; }
@@ -15,10 +22,6 @@ namespace JRPG {
 
 		public Inventory Inventory {
 			get { return this.inventory; }
-		}
-
-		public string Name {
-			get { return this.name; }
 		}
 
 		public Character() : this("") {

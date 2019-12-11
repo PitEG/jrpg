@@ -1,16 +1,19 @@
 ﻿using System;
-namespace JRPG {
 
+namespace JRPG {
+	[Serializable]
 	public struct StatValues {
 		public int current;
 		public int baseValue;
 	}
 
+	[Serializable]
 	public struct StatusEffect {
 		public bool enabled;
 		public int duration; 
 	}
 
+	[Serializable]
 	public class Stats {
 
 		private StatValues health;
@@ -43,6 +46,18 @@ namespace JRPG {
 
 		public StatValues Attack {
 			get { return attack; }
+		}
+
+		public StatusEffect Poisoned {
+			get { return poisoned; }
+		}
+
+		public StatusEffect Weakened {
+			get { return weakened; }
+		}
+
+		public StatusEffect Strengthened {
+			get { return strengthened; }
 		}
 
 		#endregion

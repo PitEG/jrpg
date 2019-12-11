@@ -1,6 +1,8 @@
 ﻿using System;
 
 namespace JRPG {
+
+	[Serializable]
 	public abstract class Item {
 
 		protected string name;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 namespace JRPG {
+
+	[Serializable]
 	public class Inventory {
 
 		protected Item[] itemArray;
