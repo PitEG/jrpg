@@ -17,6 +17,7 @@ namespace JRPG {
 
 		public string DisplayName {
 			get { return this.displayName; }
+			set { this.displayName = value; }
 		}
 
 		public Element Element {
@@ -26,6 +27,7 @@ namespace JRPG {
 
 		public int Power {
 			get { return this.power; }
+			set { this.power = value; }
 		}
 
 		public Ability() : this(String.Empty, String.Empty, 0, 0){
@@ -39,11 +41,17 @@ namespace JRPG {
 		}
 
 		public virtual void Use(params Character[] target) {
-			//unemplemented
+			//example
+			Console.WriteLine("USED ABILITY");
+			StatValues health = target[0].Stats.Health;
+			Console.WriteLine(health.Current);
+			Console.WriteLine(power);
+			target[0].Stats.Health =
+				new StatValues(health.current - this.power, health.Base);
 		}
 
 		public override string ToString() {
-			return this.name;
+			return this.displayName;
 		}
 
 		public override int GetHashCode() {
@@ -62,7 +70,7 @@ namespace JRPG {
 
 	//example elements
 	public enum Element {
-		None, Physical, Fire, Water, Earth, Air 
+		None, Physical, Fire, Water, Earth, Air, Pierce, Blunt
 	}
 
 	//example move

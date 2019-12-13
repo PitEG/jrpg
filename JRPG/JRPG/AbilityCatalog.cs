@@ -4,15 +4,15 @@ using System.Collections.Generic;
 namespace JRPG {
 	[Serializable]
 	public static class AbilityCatalog {
-		private static Dictionary<Ability, Ability> abilities; 
+		private static Dictionary<int, Ability> abilities;
 		
-		public static Dictionary<Ability, Ability> Abilities {
+		public static Dictionary<int, Ability> Abilities {
 			get { return abilities; }
 			set { abilities = value; }
 		}
 
 		static AbilityCatalog() {
-			abilities = new Dictionary<Ability, Ability>();
+			abilities = new Dictionary<int, Ability>();
 		}
 
 		/// <summary>
@@ -22,10 +22,10 @@ namespace JRPG {
 		/// <param name="ability"></param>
 		/// <returns></returns>
 		public static bool Add(Ability ability) {
-			if (abilities.ContainsKey(ability)){
+			if (abilities.ContainsKey(ability.GetHashCode())){
 				return false;
 			} else {
-				abilities.Add(ability, ability);
+				abilities.Add(ability.GetHashCode(), ability);
 				return true;
 			}
 		}
@@ -36,18 +36,18 @@ namespace JRPG {
 		/// <param name="ability"></param>
 		/// <returns></returns>
 		public static bool Remove(Ability ability) {
-			if (!abilities.ContainsKey(ability)) {
+			if (!abilities.ContainsKey(ability.GetHashCode())) {
 				return false;
 			} else {
-				abilities.Remove(ability);
+				abilities.Remove(ability.GetHashCode());
 				return true;
 			}
 		}
 
 		//Get an ability
-		public static Ability Get(Ability ability) {
-			if (abilities.ContainsKey(ability)) {
-				return abilities[ability];
+		public static Ability Get(string ability) {
+			if (abilities.ContainsKey(ability.GetHashCode())) {
+				return abilities[ability.GetHashCode()];
 			} else {
 				return null;
 			}

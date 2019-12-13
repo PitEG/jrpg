@@ -15,43 +15,50 @@ namespace JRPG.SampleGame {
 
 		//Ability Catalog
 		public static void SaveAbilityCatalog(string path) {
-			Dictionary<Ability, Ability> abilityCatalog = AbilityCatalog.Abilities;
+			Dictionary<int, Ability> abilityCatalog = AbilityCatalog.Abilities;
+			Ability[] abilities = new Ability[abilityCatalog.Count];
 			string jsonString;
 
 			File.Delete(path);
-
+			File.CreateText(path).Close();
+			int i = 0;
 			foreach (var a in abilityCatalog) {
-				jsonString = JsonSerializer.Serialize<Ability>(a.Value, options);
-				File.AppendAllText(path, jsonString + "\n");
+				abilities[i] = a.Value;
+				i++;
 			}
+			jsonString = JsonSerializer.Serialize<Ability[]>(abilities, options);
+			//Console.WriteLine(jsonString);
+			File.AppendAllText(path, jsonString);
 		}
 
-		private static readonly int SIZE_OF_ABILITY_OBJECT = 6;
 		public static void LoadAbilityCatalog(string path) {
-			using (StreamReader sr = new StreamReader(path)) {
-				string currentObject;
-				while ((currentObject = sr.ReadLine()) != null) {
-					for (int i = 0; i < SIZE_OF_ABILITY_OBJECT; i++) {
-						currentObject += sr.ReadLine() + "\n";
-					}
-					Ability ability = JsonSerializer.Deserialize<Ability>(currentObject, options);
-					AbilityCatalog.Add(ability);
-				}
+			string jsonString = File.ReadAllText(path);
+			Console.WriteLine(jsonString);
+			Ability[] abilities = JsonSerializer.Deserialize<Ability[]>(jsonString, options);
+			for (int i = 0; i < abilities.Length; i++) {
+				AbilityCatalog.Add(abilities[i]);
 			}
 		}
 
-		//Character
-		public static void SaveCharacters(Character character, string path) {
-
+		public static void SaveCharacters(Character[] character, string path) {
+			string jsonString;
+			File.Delete(path);
+			File.CreateText(path).Close();
+			jsonString = JsonSerializer.Serialize<Character[]>(character, options);
+			Console.WriteLine(jsonString);
+			File.AppendAllText(path, jsonString);
 		}
 
-		public static void LoadCharacters(string path) {
-
+		public static Character[] LoadCharacters(string path) {
+			string jsonString = File.ReadAllText(path);
+			Console.WriteLine(jsonString);
+			return JsonSerializer.Deserialize<Character[]>(jsonString, options);
 		}
 
-		public static void LoadNewCharacters(string path) {
-
+		private static void debug(Character[] characters) {
+			for (int i = 0; i < characters.Length; i++) {
+				Console.WriteLine(characters[i]);
+			}
 		}
-
 	}
 }

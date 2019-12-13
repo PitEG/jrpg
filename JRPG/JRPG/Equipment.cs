@@ -12,13 +12,16 @@ namespace JRPG {
 			get { return this.helmet; }
 		}
 		public Item Shirt {
-			get { return this.Shirt; }
+			get { return this.shirt; }
 		}
 		public Item Pants {
 			get { return this.pants; }
 		}
 		public Item Shoes {
-			get { return this.Shoes; }
+			get { return this.shoes; }
+		}
+
+		public Equipment() : this(null, null, null, null) {
 		}
 
 		public Equipment(Item helmet, Item shirt, Item pants, Item shoes) {

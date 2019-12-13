@@ -10,6 +10,7 @@ namespace JRPG {
 
 		public Item[] Items {
 			get { return this.itemArray; }
+			set { this.itemArray = value; }
 		}
 
 		public int Size {

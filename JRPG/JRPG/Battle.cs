@@ -7,6 +7,7 @@ namespace JRPG {
 		protected List<Team> teams;
 		protected Character currentCharacter;
 		protected List<Character> turnOrder;
+		protected Queue<Character> turnQueue;
 
 		public List<Team> Teams {
 			get { return teams; }
@@ -27,9 +28,8 @@ namespace JRPG {
 
 		public Battle() {
 			this.teams = new List<Team>();
-			turnOrder = new List<Character>();
-			SortTurnsRandomly(); //placeholder sorting method
-			ResetToFirstCharacter();
+			this.turnOrder = new List<Character>();
+			this.turnQueue = new Queue<Character>();
 		}
 
 		public void AddTeam(Team team) {
@@ -48,9 +48,23 @@ namespace JRPG {
 			}
 		}
 
+		public Character NextCharacter() {
+			turnQueue.Enqueue(currentCharacter); 
+			turnQueue.Dequeue();
+			currentCharacter = turnQueue.Peek();
+			return turnQueue.Peek();
+		}
+
 		#region Sorting
 
 		//sorting methods
+		public void SortTurnTemp() {
+			turnOrder.Add(teams[0].Members[0]);
+			turnQueue.Enqueue(teams[0].Members[0]);
+			turnOrder.Add(teams[1].Members[0]);
+			turnQueue.Enqueue(teams[1].Members[0]);
+			currentCharacter = teams[0].Members[0];
+		}
 		public void SortTurnsRandomly() {
 			int numberOfCharacters = 0;
 			foreach (Team team in teams) {
