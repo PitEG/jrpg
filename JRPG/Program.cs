@@ -106,7 +106,7 @@ namespace JRPG.Sample {
 		}
 	}
 
-	public class Game {
+	class Game {
 		Character[] characters;
 
 		public Game() {

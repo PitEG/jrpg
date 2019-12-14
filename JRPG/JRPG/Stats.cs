@@ -20,6 +20,14 @@ namespace JRPG {
 			this.current = current;
 			this.baseValue = baseValue;
 		}
+
+		public void Add(int amount) {
+			this.current += amount;
+		}
+
+		public void AddBase(int amount) {
+			this.baseValue = amount;
+		}
 	}
 
 	[Serializable]
@@ -41,15 +49,34 @@ namespace JRPG {
 			this.enabled = enabled;
 			this.duration = duration;
 		}
+
+		public void Enable(int duration) {
+			this.enabled = true;
+			this.duration = duration;
+		}
+
+		public void Disable() {
+			this.enabled = false;
+			this.duration = 0;
+		}
+
+		public void Tick() {
+			this.duration--;
+		}
 	}
 
 	[Serializable]
 	public class Stats {
 
+		private int level;
+
 		private StatValues health;
 		private StatValues mana;
 		private StatValues attack;
-		
+		private StatValues aptitude;
+		private StatValues defense;
+		private StatValues speed;
+
 		private StatusEffect poisoned;
 		private StatusEffect weakened;
 		private StatusEffect strengthened;
@@ -66,6 +93,11 @@ namespace JRPG {
 		}
 
 		#region Properties
+		public int Level {
+			get { return this.level; }
+			set { this.level = value; }
+		}
+
 		public StatValues Health {
 			get { return health; }
 			set { this.health = value; }
@@ -79,6 +111,16 @@ namespace JRPG {
 		public StatValues Attack {
 			get { return attack; }
 			set { this.attack = value; }
+		}
+
+		public StatValues Aptitude {
+			get { return this.aptitude; }
+			set { this.aptitude = value; }
+		}
+
+		public StatValues Speed {
+			get { return this.speed; }
+			set { this.speed = value; }
 		}
 
 		public StatusEffect Poisoned {
@@ -114,10 +156,17 @@ namespace JRPG {
 			CopyStats(stats);
 		}
 
+		public void LevelUp() {
+			this.level++;
+		}
+
 		private void CopyStats(Stats stats) {
 			this.health = stats.health;
 			this.mana = stats.mana;
 			this.attack = stats.attack;
+			this.aptitude = stats.aptitude;
+			this.defense = stats.defense;
+			this.speed = stats.speed;
 			this.poisoned = stats.poisoned;
 			this.weakened = stats.weakened;
 			this.strengthened = stats.strengthened;
